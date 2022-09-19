@@ -4349,11 +4349,10 @@ local win = VLib:Window("MagMaHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
       end)
      Setting:line()
      Setting:Button("Copy link discord",function()
+      print("Monky Hub")
         setclipboard("https://discord.gg/wAqCmsk4qx")
      end)
      Setting:Button("Destroy Gui",function()
         Library:Destroy()
      end)
-for i  = 0 , math.huge do wait()
-      print("Monky Hub")
-end
+

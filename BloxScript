@@ -4062,7 +4062,7 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
       end)
        Misc:line()
        Misc:Label("Auto Farm Level Lock")
-       LockLevelValue = 1525
+       LockLevelValue = 2400
        OldLevel = game.Players.localPlayer.Data.Level.Value
        Misc:Slider("Select Level Lock",1,LockLevelValue,LockLevelValue,function(value)
           LockLevelValue = value

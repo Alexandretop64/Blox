@@ -264,7 +264,7 @@ if game.CoreGui:FindFirstChild("Library") then
      OkayBtnTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
      OkayBtnTitle.BackgroundTransparency = 1.000
      OkayBtnTitle.Size = UDim2.new(0, 200, 0, 42)
-     OkayBtnTitle.Text = "Okey"
+     OkayBtnTitle.Text = "Okay"
      OkayBtnTitle.Font = Enum.Font.Gotham
      OkayBtnTitle.TextColor3 = Color3.fromRGB(202, 202, 202)
      OkayBtnTitle.TextSize = 24.000
@@ -3177,14 +3177,19 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
              }
              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
           end)
-       else
-          Teleport:Button("Teleport To NewWorld",function()
+          Teleport:Button("Teleport To Sea 2",function()
              local args = {
                 [1] = "TravelDressrosa" -- NEW WORLD to OLD WORLD
              }
              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
           end)
-       end
+          Teleport:Button("Teleport To Sea 3",function()
+            local args = {
+               [1] = "TravelZou" -- NEW WORLD to OLD WORLD
+            }
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+         end)
+      end
        Teleport:line()
        Teleport:Label("Teleport Island")
        if newworld then
@@ -3324,7 +3329,7 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
        Raids:line()
        Raids:Label("Use In Raid Only",true)
        Distance = 500
-       Raids:Toggle("Kill Arua",false,function(value)
+       Raids:Toggle("Kill Aura",false,function(value)
           if newworld then
              RaidsArua = value
           elseif OldWorld then
@@ -3397,7 +3402,7 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
                    if RaidsArua and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 500 then
                       pcall(function()
                          repeat wait(.1)
-                            print("Mammos Hub No.1")
+                            print("MonkyHub")
                          until not RaidsArua or not v.Parent or v.Humanoid.Health <= 0
                       end)
                    end
@@ -4092,8 +4097,8 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
           wait(1)
           vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
        end)
-       AutoFram:Toggle("Anit AFK",true,function(vu)
-          print("Anit AFK Start")
+       AutoFram:Toggle("Anti AFK",true,function(vu)
+          print("Anti AFK Start")
           local vu = game:GetService("VirtualUser")
           game:GetService("Players").LocalPlayer.Idled:connect(function()
              vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
@@ -4137,9 +4142,9 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
              SelectDevil = ply
           end
        )
-       Fruit:Toggle("Buy Devil Fruit Sinper",false,function(value)
+       Fruit:Toggle("Buy Devil Fruit Sniper",false,function(value)
           if SelectDevil == "" and value then
-             VLib:Notification("Weapon","Select Devil Fruit Sniper")
+             VLib:Notification("Select Devil Fruit Sniper")
           elseif value then
              BuyFruitSinper = vu
           end	
@@ -4161,6 +4166,20 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
              end 
           end
        end)
+       Fruit:Button("Buy Random Devil Fruit",function()
+         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+      end)
+      Fruit:Toggle("Auto Random Devil Fruit",false,function(v)
+         DevilAutoBuy = v
+      end)
+      spawn(function()
+         while wait() do 
+            if DevilAutoBuy then
+               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+            end
+         end
+      end)
+      
        local BuyItem = win:Tab("Buy Item", "http://www.roblox.com/asset/?id=6023426915")
        BuyItem:Label("-- Abilities --")
        BuyItem:Button("Skyjump",function()
@@ -4185,19 +4204,6 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
           }
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
        end)
-       BuyItem:Button("Buy Random Devil Fruit",function()
-         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-      end)
-      BuyItem:Toggle("Auto Buy Random Devil Fruit",false,function(v)
-         DevilAutoBuy = v
-      end)
-       spawn(function()
-         while wait() do
-            if DevilAutoBuy then wait()
-               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-            end
-         end
-       end)
        BuyItem:line()
        BuyItem:Label("-- Fighting Style --")
        BuyItem:Button("Black Leg",function()
@@ -4220,6 +4226,22 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
           
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
        end)
+       BuyItem:Button("Electric Claw",function()
+         local args = {
+            [1] = "BuyElectricClaw"
+         }
+         
+         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+      end)
+      BuyItem:line()
+      BuyItem:Label("-- Sword --")
+      BuyItem:Button("Katana [ $1,000 Beli ]",function()
+         local args = {
+            [1] = "BuyItem",
+            [2] = "Katana"
+         }
+         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+      end)
        if newworld then
           BuyItem:Button("Dragon Claw",function()
              local args = {

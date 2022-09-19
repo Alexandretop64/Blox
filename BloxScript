@@ -4107,6 +4107,7 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
        Fruit:Dropdown(
           "Devil Fruit Sniper",
           {
+             "Kilo-Kilo",
              "Bomb-Bomb",
              "Spike-Spike",
              "Chop-Chop",
@@ -4129,7 +4130,8 @@ local win = VLib:Window("MonkyHub", "Blox Fruit", Color3.fromRGB(252, 83, 83))
              "Gravity-Gravity",
              "Dough-Dough",
              "Control-Control",
-             "Dragon-Dragon"
+             "Dragon-Dragon",
+             "Leopard-Leopard"
                 }
           ,function(ply)
              SelectDevil = ply
